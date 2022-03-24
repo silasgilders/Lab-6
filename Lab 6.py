@@ -4,9 +4,11 @@ from sys import argv
 
 def main():
     poke_id = argv[1]
+
     user_info = get_user_info(poke_id)
+
     if user_info:
-      pastebin_strings = get_pastebin_strings(user_info)
+      pastebin_strings = get_title_and_text(user_info)
       pastebin_url = post_to_pastebin(pastebin_strings[0], pastebin_strings[1])
       print(pastebin_url)
 
@@ -41,7 +43,7 @@ def get_title_and_text(user_dict):
     body_text = ""
 
     for ability in user_dict["abilities"]:
-        body_text += user_dict["abilities"]
+        body_text += str(user_dict["abilities"])
       
         print(body_text)
 
