@@ -14,24 +14,23 @@ def main():
 
 def post_to_pastebin(title, body_text):
 
-      print("Posting to PasteBin.", end='')
+    print("Posting to PasteBin...", end='')
 
-      pastebin_params = {
-      'api_dev_key': "jhEO8O21WXqbcq8pNdhYWgqJOiNFXgd-",
+    params = {
+      'api_dev_key': "f4R0OTFza_qTQ1NZJYLjoCeLqoHQux4X",
       'api_option': 'paste',
       'api_paste_code': body_text,
       'api_paste_name': title
     }
-    
+    URL = 'https://pastebin.com/api/api_post.php'
+    response = requests.post(URL, data=params)
 
-      response = requests.post('https://pastebin.com/api/api_post.ph', data = pastebin_params)
-
-      if response.status_code == 200:
-        print('Success')
-        return response.json()
-      else:
-        print('Failed, Response code:', response.status_code)
-        return
+    if response.status_code == 200:
+      print('success')
+      return response.text # Converts response body to a string
+    else:
+      print('failed. Response code:', response.status_code)
+      return response.status_code
 
 
   
@@ -43,11 +42,12 @@ def get_title_and_text(user_dict):
     body_text = ""
 
     for ability in user_dict["abilities"]:
-        body_text += str(user_dict["abilities"])
+        body_text += str(user_dict["abilities"][0]["ability"]["name"])
+          
       
         print(body_text)
 
-        title = user_dict['name'] + "'s Abilities"
+        title = user_dict['name'] + "'s abilities"
 
         return (title, body_text)
     
