@@ -42,10 +42,10 @@ def get_title_and_text(user_dict):
     body_text = ""
 
     for ability in user_dict["abilities"]:
-        body_text += str(user_dict["abilities"][0]["ability"]["name"])
+        body_text += str(ability['ability']["name"])
           
       
-        print(body_text)
+        print("-", body_text, "\n")
 
         title = user_dict['name'] + "'s abilities"
 
